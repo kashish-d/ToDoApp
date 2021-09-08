@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- displays site properly based on user's device -->
+
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+    <title>Frontend Mentor | Todo app</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <section class="master-container">
+        <div class="hero">
+            <div class="heading">
+                <h1>TODO</h1>
+                <div class="dark-mode-icon">
+                    <img class="moon-icon" src="images/icon-moon.svg" alt="">
+                    <img class="sun-icon displayNone" src="images/icon-sun.svg" alt="">
+                </div>
+            </div>
+            <div class="note current-note">
+                <div class="complete-tick-place">
+                    <div class="inner">
+                    </div>
+                </div>
+                <div class="current-note-content">
+                    <input type="text" placeholder="Create a new todo..">
+                </div>
+            </div>
+        </div>
+        <main class="to-do-box">
+            <section class="all-list-box">
+                <div class="note">
+                    <div class="complete-tick">
+                        <div class="inner">
+                            <img src="images/icon-check.svg" alt="">
+                        </div>
+                    </div>
+                    <div class="note-content">
+                        <p>Your note goes here</p>
+                    </div>
+
+                </div>
+            </section>
+            <section class="active-list-box">
+
+            </section>
+            <section class="completed-list-box">
+
+            </section>
+            <div class=" footer">
+                <div class="count">
+                    <p class="count-number">0 items left</p>
+                </div>
+                <ul class="menu">
+                    <li class="menu-item all-list active">All</li>
+                    <li class="menu-item active-list">Active</li>
+                    <li class="menu-item completed-list">Completed</li>
+                </ul>
+                <div class="clear-all">
+                    <p>Clear Completed</p>
+                </div>
+            </div>
+        </main>
+        <nav class="navbar">
+            <ul class="menu">
+                <li class="menu-item all-list-mobile active">All</li>
+                <li class="menu-item active-list-mobile">Active</li>
+                <li class="menu-item completed-list-mobile">Completed</li>
+            </ul>
+        </nav>
+        <footer class="footer">
+            <p class="footer-text">Drag & drop to reorder list</p>
+        </footer>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/underscore@1.13.1/underscore-umd-min.js"></script>
+    <script src="script.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
