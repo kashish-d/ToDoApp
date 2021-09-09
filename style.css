@@ -133,7 +133,6 @@
   min-height: 3.5rem;
   height: 3.5rem;
   background: var(--to-do-list);
-  padding: 1rem;
   border-bottom: 0.05rem solid var(--border);
 }
 
@@ -187,8 +186,12 @@
   border-radius: 50%;
   height: 1.4rem;
   width: 1.4rem;
-  margin-right: 1rem;
+  margin: 1rem;
   cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .note .complete-tick .inner,
@@ -214,16 +217,14 @@
   display: none;
 }
 
-.note .complete-tick:hover,
-.note .complete-tick-place:hover {
-  background: -webkit-gradient(linear, left top, left bottom, from(#57ddff), to(#c058f3));
-  background: linear-gradient(#57ddff, #c058f3);
-}
-
 .note .delete-option {
-  height: 1.4rem;
-  width: 1.4rem;
-  margin-left: 1rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  height: 100%;
+  width: 7%;
+  margin: 0 1rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -237,7 +238,8 @@
 }
 
 .note .delete-option img {
-  height: 65%;
+  height: 28%;
+  pointer-events: none;
 }
 
 .note.completed .complete-tick,
@@ -321,10 +323,14 @@
 }
 
 .to-do-box .footer .clear-all {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   cursor: pointer;
 }
 
-.to-do-box .footer .clear-all:hover {
+.to-do-box .footer .clear-all:active {
   color: var(--footer-hover);
 }
 
@@ -392,7 +398,8 @@
 
 @media screen and (min-width: 520px) {
   .hero {
-    min-height: 33vh;
+    min-height: 219px;
+    max-height: 33vh;
     background: var(--desktop);
     background-position: center;
     background-size: cover;
@@ -431,8 +438,15 @@
   .note:hover .delete-option {
     visibility: visible;
   }
+  .complete-tick:hover {
+    background: -webkit-gradient(linear, left top, left bottom, from(#57ddff), to(#c058f3));
+    background: linear-gradient(#57ddff, #c058f3);
+  }
   .menu-item:hover {
     color: var(--menu-hover);
+  }
+  .clear-all:hover {
+    color: var(--footer-hover);
   }
 }
 

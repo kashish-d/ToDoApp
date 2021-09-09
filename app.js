@@ -1,30 +1,7 @@
-// let notesObj = {
-//     "Good Morning": false,
-//     "Walking down the street": true,
-//     "Playing Games": false,
-//     "Eating Food": true,
-//     "Have fun at Twitter": false,
-//     "Watch Kyle Simpson video": true,
-//     "Take on a new challenge from frontend mentor. This one should be completed": false,
-// };
-
 let notesObj = {};
 const allListSection = document.querySelector(".all-list-box");
 const activeListSection = document.querySelector(".active-list-box");
 const completedListSection = document.querySelector(".completed-list-box");
-// let activeNotesLeft = 0;
-
-// Making objects of each note. Use new keyword while using.
-// function NewNote(noteText){
-//     this.noteText = noteText;
-//     this.noteCompletedStatus = false;
-// }
-// NewNote.prototype.noteCompletedTrue = function(){
-//     this.noteCompletedStatus = true;
-// }
-// NewNote.prototype.noteCompletedFalse = function(){
-//     this.noteCompletedStatus = false;
-// }
 
 if(localStorage.getItem('Kashish') != null){
     notesObj = JSON.parse(localStorage.getItem("Kashish"));
@@ -200,11 +177,11 @@ function updatingNotes() {
 // Removing notes from Dom and from array of objects
 const toDoBox = document.querySelector(".to-do-box");
 toDoBox.addEventListener("click", (e) => {
-    if (e.target.classList.contains("delete-note-icon")) {
-        let element = e.target.parentElement.parentElement;
-        let parentEle = e.target.parentElement.parentElement.parentElement;
+    if (e.target.classList.contains("delete-option")) {
+        let element = e.target.parentElement;
+        let parentEle = e.target.parentElement.parentElement;
         let textOfNote = element.children[1].children[0].textContent;
-        element.classList.add("delete"); //doesn't work for now
+        // element.classList.add("delete"); //doesn't work for now
         parentEle.removeChild(element);
         delete notesObj[textOfNote];
         updatingNotes();

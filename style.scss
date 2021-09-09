@@ -69,7 +69,7 @@ $check-background-2: hsl(280, 87%, 65%);
     justify-content: space-evenly;
     align-items: center;
     min-height: 203px;
-    max-height: 25vh;
+    max-height: 25vh;   
     background: var(--mobile);
     background-size: cover;
     background-position: center;
@@ -123,7 +123,7 @@ $check-background-2: hsl(280, 87%, 65%);
     min-height: 3.5rem;
     height: 3.5rem;
     background: var(--to-do-list);
-    padding: 1rem;
+    // padding: 1rem;
     border-bottom: 0.05rem solid var(--border);
     // transition: all 1s ease-in-out;
 
@@ -160,8 +160,9 @@ $check-background-2: hsl(280, 87%, 65%);
         border-radius: 50%;
         height: 1.4rem;
         width: 1.4rem;
-        margin-right: 1rem;
+        margin: 1rem;
         cursor: pointer;
+        user-select: none;
         
         .inner{
             pointer-events: none;
@@ -178,21 +179,21 @@ $check-background-2: hsl(280, 87%, 65%);
             }
         }
 
-        &:hover{
-            background: linear-gradient($check-background,$check-background-2);
-        }
+        
     }
     .delete-option{
-        height: 1.4rem;
-        width: 1.4rem;
-        margin-left: 1rem;
+        user-select: none;
+        height: 100%;
+        width: 7%;
+        margin: 0 1rem;
         display: flex;
         justify-content: center;
         align-items: center;
         cursor: pointer;
 
         img{
-            height: 65%;
+            height: 28%;
+            pointer-events: none;
         }
     }
 
@@ -265,8 +266,9 @@ $check-background-2: hsl(280, 87%, 65%);
         border-top: 0.05rem solid var(--border);
         
         .clear-all{
+            user-select: none;
             cursor: pointer;
-            &:hover{
+            &:active{
                 color: var(--footer-hover);
             }
         }
@@ -319,7 +321,8 @@ $check-background-2: hsl(280, 87%, 65%);
 
 @media screen and(min-width: 520px) {
     .hero{
-        min-height: 33vh;
+        min-height: 219px;
+        max-height: 33vh;
         background: var(--desktop);
         background-position: center;
         background-size:cover;
@@ -361,9 +364,19 @@ $check-background-2: hsl(280, 87%, 65%);
             }
         }
     }
+    .complete-tick{
+        &:hover{
+            background: linear-gradient($check-background,$check-background-2);
+        }
+    }
     .menu-item{
         &:hover{
             color: var(--menu-hover);
+        }
+    }
+    .clear-all{
+        &:hover{
+            color: var(--footer-hover);
         }
     }
 }
@@ -371,5 +384,3 @@ $check-background-2: hsl(280, 87%, 65%);
 .displayNone{
     display: none;
 }
-
-
