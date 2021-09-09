@@ -376,7 +376,7 @@
 
 .main-footer {
   width: 100%;
-  min-height: 150px;
+  min-height: 120px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -412,6 +412,9 @@
   }
   .navbar {
     display: none;
+  }
+  .main-footer {
+    margin-top: -4.5rem;
   }
 }
 

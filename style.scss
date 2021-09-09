@@ -309,7 +309,7 @@ $check-background-2: hsl(280, 87%, 65%);
 .main-footer{
 
     width: 100%;
-    min-height: 150px;
+    min-height: 120px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -337,6 +337,9 @@ $check-background-2: hsl(280, 87%, 65%);
     }
     .navbar{
         display: none;
+    }
+    .main-footer{
+        margin-top: -4.5rem;
     }
 }
 @media screen and (min-width: 600px) {
