@@ -402,7 +402,7 @@
 
 @media screen and (min-width: 520px) {
   .hero {
-    min-height: 219px;
+    min-height: 260px;
     max-height: 33vh;
     background: var(--desktop);
     background-position: center;
