@@ -184,8 +184,9 @@ $check-background-2: hsl(280, 87%, 65%);
     .delete-option{
         user-select: none;
         height: 100%;
-        width: 7%;
-        margin: 0 1rem;
+        width: 16%;
+        max-width: 53px;
+        padding: 0 1rem;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -197,7 +198,6 @@ $check-background-2: hsl(280, 87%, 65%);
         }
     }
 
-    
 
     &.completed{
         .complete-tick,

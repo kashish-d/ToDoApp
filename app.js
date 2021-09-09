@@ -146,6 +146,7 @@ completedNotesTabMobile.addEventListener("click", () => {
 // Clearing the completed ones
 const clearAllCompleted = document.querySelector(".clear-all");
 clearAllCompleted.addEventListener("click", () => {
+    if(!confirm('Are you sure?\nThis action cannot be undone.')){return}
     for (let key in notesObj){
         if(notesObj[key]){
             delete notesObj[key];
@@ -178,6 +179,7 @@ function updatingNotes() {
 const toDoBox = document.querySelector(".to-do-box");
 toDoBox.addEventListener("click", (e) => {
     if (e.target.classList.contains("delete-option")) {
+        if(!confirm('Are you sure?\nThis action cannot be undone.')){return}
         let element = e.target.parentElement;
         let parentEle = e.target.parentElement.parentElement;
         let textOfNote = element.children[1].children[0].textContent;
