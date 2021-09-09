@@ -9,7 +9,6 @@ This is a solution to the [Todo app challenge on Frontend Mentor](https://www.fr
   - [Screenshot](#screenshot)
   - [Links](#links)
 - [Built with](#built-with)
-- [Continious development](#continued-development)
 - [Author](#author)
 
 
@@ -41,8 +40,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://kashish-d.github.io/ToDoApp/)
+- Live Site URL: [To Do App](https://kashish-d.github.io/ToDoApp/)
 
 
 ### Built with
@@ -55,14 +53,8 @@ Users should be able to:
 - Vanilla Js
 
 
-### Continued development
-
-- Will be implementing
- - ordering tasks by drag and drop.
-
-
 ## Author
 
-- Name - [Kashish Dhingra]
+- Name - Kashish
 - Frontend Mentor - [@kashish-d](https://www.frontendmentor.io/profile/kashish-d)
 - Twitter - [@Kashish_web_dev](https://twitter.com/Kashish_web_dev)
