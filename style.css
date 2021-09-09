@@ -21,8 +21,8 @@
   --line-through: hsl(236, 9%, 61%);
   --menu-hover: hsl(235, 19%, 35%);
   --footer-hover: hsl(235, 19%, 35%);
-  --mobile: url('images/bg-mobile-light.jpg');
-  --desktop: url('images/bg-desktop-light.jpg');
+  --mobile: url("images/bg-mobile-light.jpg");
+  --desktop: url("images/bg-desktop-light.jpg");
 }
 
 :root.dark-mode {
@@ -36,10 +36,10 @@
   --tick-border: hsl(237, 14%, 26%);
   --completed-font: hsl(233, 14%, 35%);
   --line-through: hsl(234, 11%, 52%);
-  --menu-hover:  hsl(236, 33%, 92%);
+  --menu-hover: hsl(236, 33%, 92%);
   --footer-hover: hsl(236, 33%, 92%);
-  --mobile: url('images/bg-mobile-dark.jpg');
-  --desktop: url('images/bg-desktop-dark.jpg');
+  --mobile: url("images/bg-mobile-dark.jpg");
+  --desktop: url("images/bg-desktop-dark.jpg");
 }
 
 .master-container {
@@ -110,7 +110,8 @@
   border-radius: 0.4rem;
 }
 
-.hero .current-note .note-content, .hero .current-note input {
+.hero .current-note .note-content,
+.hero .current-note input {
   height: 100%;
 }
 
@@ -121,6 +122,7 @@
   background: transparent;
   outline: none;
   font-size: 0.87rem;
+  margin-right: 1rem;
 }
 
 .note {
@@ -299,7 +301,8 @@
   display: none;
 }
 
-.to-do-box .active-list-box, .to-do-box .completed-list-box {
+.to-do-box .active-list-box,
+.to-do-box .completed-list-box {
   display: none;
 }
 
@@ -427,7 +430,8 @@
 }
 
 @media screen and (min-width: 600px) {
-  .hero .current-note input, .note .note-content p {
+  .hero .current-note input,
+  .note .note-content p {
     font-size: 1.05rem;
   }
   .hero .heading h1 {

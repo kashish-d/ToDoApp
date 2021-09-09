@@ -13,7 +13,7 @@ $check-background: hsl(192, 100%, 67%);
 $check-background-2: hsl(280, 87%, 65%);
 
 // Light mode Colors
-:root{
+:root {
     --bright-blue: hsl(220, 98%, 61%);
     --to-do-list: hsl(0, 0%, 98%);
     --main-background: hsl(236, 33%, 92%);
@@ -28,11 +28,10 @@ $check-background-2: hsl(280, 87%, 65%);
 
     --menu-hover: hsl(235, 19%, 35%);
     --footer-hover: hsl(235, 19%, 35%);
-    --mobile: url('images/bg-mobile-light.jpg');
-    --desktop: url('images/bg-desktop-light.jpg');
-    
+    --mobile: url("images/bg-mobile-light.jpg");
+    --desktop: url("images/bg-desktop-light.jpg");
 }
-:root.dark-mode{
+:root.dark-mode {
     --bright-blue: hsl(220, 98%, 61%);
     --main-background: hsl(235, 21%, 11%);
     --to-do-list: hsl(235, 24%, 19%);
@@ -45,10 +44,10 @@ $check-background-2: hsl(280, 87%, 65%);
     --completed-font: hsl(233, 14%, 35%);
     --line-through: hsl(234, 11%, 52%);
 
-    --menu-hover:  hsl(236, 33%, 92%);
+    --menu-hover: hsl(236, 33%, 92%);
     --footer-hover: hsl(236, 33%, 92%);
-    --mobile: url('images/bg-mobile-dark.jpg');
-    --desktop: url('images/bg-desktop-dark.jpg');
+    --mobile: url("images/bg-mobile-dark.jpg");
+    --desktop: url("images/bg-desktop-dark.jpg");
 }
 
 .master-container {
@@ -59,7 +58,7 @@ $check-background-2: hsl(280, 87%, 65%);
     .heading,
     .current-note,
     .to-do-box,
-    .navbar{
+    .navbar {
         max-width: 500px;
     }
 }
@@ -69,7 +68,7 @@ $check-background-2: hsl(280, 87%, 65%);
     justify-content: space-evenly;
     align-items: center;
     min-height: 203px;
-    max-height: 25vh;   
+    max-height: 25vh;
     background: var(--mobile);
     background-size: cover;
     background-position: center;
@@ -91,33 +90,35 @@ $check-background-2: hsl(280, 87%, 65%);
             font-weight: 700;
             margin-bottom: -5px;
         }
-        .dark-mode-icon{
+        .dark-mode-icon {
             max-height: 1.4rem;
             cursor: pointer;
-            
-            img{
+
+            img {
                 height: 100%;
             }
         }
     }
-    
-    .current-note{
+
+    .current-note {
         border-radius: 0.4rem;
-        .note-content,input{
+        .note-content,
+        input {
             height: 100%;
         }
-        input{
+        input {
             color: var(--font);
             width: 100%;
             border: none;
             background: transparent;
             outline: none;
             font-size: 0.87rem;
+            margin-right: 1rem;
         }
     }
 }
 
-.note{
+.note {
     display: flex;
     align-items: center;
     min-height: 3.5rem;
@@ -127,32 +128,32 @@ $check-background-2: hsl(280, 87%, 65%);
     border-bottom: 0.05rem solid var(--border);
     // transition: all 1s ease-in-out;
 
-    &.delete{
+    &.delete {
         height: 0;
         overflow: hidden;
         max-height: 0px;
     }
 
-    &.current-note{
+    &.current-note {
         border: none;
     }
     .note-content,
-    .current-note-content{
+    .current-note-content {
         flex: 1;
         height: 100%;
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        p{
+        p {
             font-size: 0.87rem;
             color: var(--font);
             cursor: pointer;
             line-height: 1.2;
         }
     }
-    
+
     .complete-tick,
-    .complete-tick-place{
+    .complete-tick-place {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -163,8 +164,8 @@ $check-background-2: hsl(280, 87%, 65%);
         margin: 1rem;
         cursor: pointer;
         user-select: none;
-        
-        .inner{
+
+        .inner {
             pointer-events: none;
             display: flex;
             justify-content: center;
@@ -174,14 +175,12 @@ $check-background-2: hsl(280, 87%, 65%);
             background: var(--to-do-list);
             border-radius: 50%;
 
-            img{
+            img {
                 display: none;
             }
         }
-
-        
     }
-    .delete-option{
+    .delete-option {
         user-select: none;
         height: 100%;
         width: 16%;
@@ -192,22 +191,21 @@ $check-background-2: hsl(280, 87%, 65%);
         align-items: center;
         cursor: pointer;
 
-        img{
+        img {
             height: 28%;
             pointer-events: none;
         }
     }
 
-
-    &.completed{
+    &.completed {
         .complete-tick,
-        .inner{
-            background: linear-gradient($check-background,$check-background-2);
-            img{
+        .inner {
+            background: linear-gradient($check-background, $check-background-2);
+            img {
                 display: block;
             }
         }
-        .note-content p{
+        .note-content p {
             text-decoration: line-through var(--line-through);
             text-decoration-thickness: 0px;
             color: var(--completed-font);
@@ -215,18 +213,18 @@ $check-background-2: hsl(280, 87%, 65%);
     }
 }
 
-.to-do-box{
+.to-do-box {
     min-height: 385px;
     margin: $padding;
     border-radius: 0.4rem;
     transform: translateY(-13%);
     background: var(--to-do-list);
     max-height: 400px;
-    box-shadow:2px 2px 10px hsla(0, 0% ,0% , 0.2);
-    
+    box-shadow: 2px 2px 10px hsla(0, 0%, 0%, 0.2);
+
     .all-list-box,
     .active-list-box,
-    .completed-list-box{
+    .completed-list-box {
         background: var(--to-do-list);
         // border: 1px solid red;
         min-height: 335px;
@@ -237,22 +235,21 @@ $check-background-2: hsl(280, 87%, 65%);
         // transition: all 1s ease-in ;
         border-radius: 0.4rem 0.4rem 0 0;
 
-        & .note:nth-child(1){
+        & .note:nth-child(1) {
             border-radius: 0.4rem 0.4rem 0 0;
         }
 
-        &::-webkit-scrollbar{
+        &::-webkit-scrollbar {
             display: none;
         }
+    }
 
-        
-    };
-
-    .active-list-box,.completed-list-box{
+    .active-list-box,
+    .completed-list-box {
         display: none;
     }
 
-    .footer{
+    .footer {
         background: var(--to-do-list);
         width: 100%;
         display: flex;
@@ -264,21 +261,21 @@ $check-background-2: hsl(280, 87%, 65%);
         padding: 1rem $padding;
         height: 3.1rem;
         border-top: 0.05rem solid var(--border);
-        
-        .clear-all{
+
+        .clear-all {
             user-select: none;
             cursor: pointer;
-            &:active{
+            &:active {
                 color: var(--footer-hover);
             }
         }
 
-        .menu{
+        .menu {
             display: none;
         }
     }
 }
-.navbar{
+.navbar {
     margin: 0 $padding;
     background: var(--to-do-list);
     display: flex;
@@ -288,7 +285,7 @@ $check-background-2: hsl(280, 87%, 65%);
     border-radius: 0.4rem;
     margin-top: -3rem;
 }
-.menu{
+.menu {
     font-size: 0.9rem;
     font-weight: 700;
     display: flex;
@@ -297,19 +294,17 @@ $check-background-2: hsl(280, 87%, 65%);
     list-style: none;
     color: var(--menu);
 
-    .menu-item{
+    .menu-item {
         margin: 0.3rem;
         cursor: pointer;
 
-        &.active{
+        &.active {
             color: var(--bright-blue);
         }
-        
     }
 }
 
-.main-footer{
-
+.main-footer {
     width: 100%;
     min-height: 120px;
     display: flex;
@@ -320,67 +315,68 @@ $check-background-2: hsl(280, 87%, 65%);
 }
 
 @media screen and(min-width: 520px) {
-    .hero{
+    .hero {
         min-height: 219px;
         max-height: 33vh;
         background: var(--desktop);
         background-position: center;
-        background-size:cover;
+        background-size: cover;
         background-repeat: no-repeat;
     }
     .heading,
     .current-note,
     .to-do-box,
-    .navbar{
+    .navbar {
         margin-left: auto;
         margin-right: auto;
     }
-    .to-do-box .footer .menu{
+    .to-do-box .footer .menu {
         display: flex;
     }
-    .navbar{
+    .navbar {
         display: none;
     }
-    .main-footer{
+    .main-footer {
         margin-top: -4.5rem;
     }
 }
 @media screen and (min-width: 600px) {
-    .hero .current-note input,.note .note-content p{
+    .hero .current-note input,
+    .note .note-content p {
         font-size: 1.05rem;
     }
-    .hero{
-        .heading h1{
+    .hero {
+        .heading h1 {
             font-size: 2.2rem;
         }
     }
-    .note{
-        .delete-option{
+    .note {
+        .delete-option {
             visibility: hidden;
         }
-        &:hover{
-            .delete-option{
+        &:hover {
+            .delete-option {
                 visibility: visible;
             }
         }
     }
-    .complete-tick{
-        &:hover{
-            background: linear-gradient($check-background,$check-background-2);
+    .complete-tick {
+        &:hover {
+            background: linear-gradient($check-background, $check-background-2);
         }
     }
-    .menu-item{
-        &:hover{
+    .menu-item {
+        &:hover {
             color: var(--menu-hover);
         }
     }
-    .clear-all{
-        &:hover{
+    .clear-all {
+        &:hover {
             color: var(--footer-hover);
         }
     }
 }
 
-.displayNone{
+.displayNone {
     display: none;
 }
