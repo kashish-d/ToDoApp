@@ -7,17 +7,18 @@ function darkModeFunc(){
     document.documentElement.classList.toggle('dark-mode');
     sunIcon.classList.toggle('displayNone');
     moonIcon.classList.toggle('displayNone');
+
+    // Setting up the value if it doesn't exist. f
     if(localStorage.getItem("darkMode") === null){
-        localStorage.setItem("darkMode","false")
+        localStorage.setItem("darkMode","0")
     }
-    if(localStorage.getItem("darkMode") === "false"){
-        localStorage.setItem("darkMode","true")
-    }else{
-        localStorage.setItem("darkMode","false")
-    }
+
+    // Unary operator because "true" and "false", both are truthy values
+    const isDarkMode = +localStorage.getItem("darkMode");
+    localStorage.setItem('darkMode', isDarkMode ? 0 : 1);
 };
 
-if(localStorage.getItem("darkMode") == "true"){
+if(+localStorage.getItem("darkMode") == 1){
     document.documentElement.classList.add('dark-mode');
     sunIcon.classList.toggle('displayNone');
     moonIcon.classList.toggle('displayNone');

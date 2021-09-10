@@ -8,7 +8,7 @@ if(localStorage.getItem('Kashish') != null){
 }
 
 window.addEventListener("load",()=>{
-    if(_.isEmpty(notesObj) === false){
+    if(isEmpty(notesObj) === false){
         updatingNotes();
     }
 });
@@ -17,6 +17,7 @@ window.addEventListener("load",()=>{
 const newNoteInput = document.querySelector(".current-note input");
 newNoteInput.addEventListener("keydown", (e) => {
     if (e.keyCode === 13) {
+        if(newNoteInput.value.startsWith('<')){return}
         notesObj[newNoteInput.value] = false;
         updatingNotes();
         newNoteInput.value = "";
@@ -28,12 +29,13 @@ newNoteInput.addEventListener("keydown", (e) => {
     }
 });
 
-// Getting the notes from the array of objects to Dom. Takes a function so you can use filter
-// inside and get completed and not completed from the same
+
+// This function takes the parent element to append and the object to iterate through. 
+// Being used to populate all,active and completed part of the list
 function fillingNotesToDom(box, filteredObject) {
     let html = ""; //Adding nothing as keeping it undefined and adding more to it will include undefined
     let statusEach = "";
-    if(_.isEmpty(notesObj) === true){
+    if(isEmpty(notesObj) === true){
         html = `<div class="note">
                     <div class="complete-tick">
                         <div class="inner">
@@ -52,6 +54,8 @@ function fillingNotesToDom(box, filteredObject) {
             } else {
                 statusEach = "";
             }
+            // This way is inefficienet and creating elemenet and appending is performant. 
+            // Use that if you feel the app getting sloppy!
             html += `<div class="note ${statusEach}">
                         <div class="complete-tick">
                             <div class="inner">
@@ -146,7 +150,6 @@ completedNotesTabMobile.addEventListener("click", () => {
 // Clearing the completed ones
 const clearAllCompleted = document.querySelector(".clear-all");
 clearAllCompleted.addEventListener("click", () => {
-    if(!confirm('Are you sure?\nThis action cannot be undone.')){return}
     for (let key in notesObj){
         if(notesObj[key]){
             delete notesObj[key];
@@ -175,16 +178,15 @@ function updatingNotes() {
     localStore("Kashish",notesObj);
 }
 
-// Removing notes from Dom and from array of objects
+// Removing notes from Dom and from notesObj
+// Supplying dummy note if no note is there
 const toDoBox = document.querySelector(".to-do-box");
 toDoBox.addEventListener("click", (e) => {
     if (e.target.classList.contains("delete-option")) {
         if(!confirm('Are you sure?\nThis action cannot be undone.')){return}
         let element = e.target.parentElement;
-        let parentEle = e.target.parentElement.parentElement;
         let textOfNote = element.children[1].children[0].textContent;
-        // element.classList.add("delete"); //doesn't work for now
-        parentEle.removeChild(element);
+        element.remove();
         delete notesObj[textOfNote];
         updatingNotes();
     }
@@ -205,11 +207,12 @@ toDoBox.addEventListener("click", (e) => {
 
 });
 
-
+// Counting the tasks left and giving it to Dom
 function counting(activeObj){
     let count = Object.keys(activeObj).length;
     document.querySelector('.count-number').textContent = `${count} items left`
 }
+
 
 function localStore(key,object){
     if(localStorage.getItem(key) !== null){
@@ -217,4 +220,8 @@ function localStore(key,object){
     }
     let data = JSON.stringify(object);
     localStorage.setItem(key,data);
+}
+
+function isEmpty(object){
+    return(JSON.stringify(object) === "{}")
 }
