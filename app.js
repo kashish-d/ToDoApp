@@ -225,3 +225,6 @@ function localStore(key,object){
 function isEmpty(object){
     return(JSON.stringify(object) === "{}")
 }
+
+
+// ludfvealv ajnol wuehaj;wekfaygkfhj;kaorgjayrl
