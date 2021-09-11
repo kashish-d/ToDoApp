@@ -29,3 +29,11 @@ if(+localStorage.getItem("darkMode") == 1){
     sunIcon.classList.toggle('displayNone');
     moonIcon.classList.toggle('displayNone');
 }
+
+
+const allListBox = document.querySelector('.all-list-box');
+Sortable.create(allListBox, {
+    handle: '.note-content',
+    animation: 200,
+    ghostClass: 'ghost'
+  });
