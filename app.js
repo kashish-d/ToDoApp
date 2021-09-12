@@ -55,12 +55,14 @@ const allListSection = document.querySelector(".all-list-box");
 const activeListSection = document.querySelector(".active-list-box");
 const completedListSection = document.querySelector(".completed-list-box");
 
-if(localStorage.getItem('ToDo') !== null){
-    notesObj = JSON.parse(localStorage.getItem("Kashish"));
+if(localStorage.getItem('ToDo') != null){
+    notesObj = JSON.parse(localStorage.getItem("ToDo"));
+    orderArray = JSON.parse(localStorage.getItem("Order"))
 }
 
 window.addEventListener("load",()=>{
     if(isEmpty(notesObj) === false){
+        console.log('hola');
         updatingNotes();
     }else{
         counter1.resetCounter();
@@ -114,6 +116,7 @@ function fillingNotesToDom(box, filteredObject) {
                 </div>` 
         counter1.resetCounter();  
     }else{
+        console.log(filteredObject);
         orderArray.forEach((order)=>{
             if(filteredObject[order]){
                 let tempObj = filteredObject[order];
@@ -141,11 +144,12 @@ function fillingNotesToDom(box, filteredObject) {
         }
     )}
     box.innerHTML = html;
+    console.log(html);
 }
 
 // Calling other functions to updates all the tabs
 function updatingNotes() {
-
+    console.log(notesObj);
     let activeObj = {};
     let completedObj = {};
     for (let key in notesObj) {
@@ -164,6 +168,7 @@ function updatingNotes() {
     fillingNotesToDom(completedListSection, completedObj);
     counting(activeObj);
     localStore("ToDo",notesObj);
+    localStore("Order",orderArray)
 }
 
 const allNotesTab = document.querySelector(".all-list");
@@ -281,7 +286,7 @@ toDoBox.addEventListener("click", (e) => {
         parentEle.classList.toggle('completed')
         updatingNotes()
     }
-    console.table(notesObj[dataAttribute]);
+    // console.table(notesObj[dataAttribute]);
 
 });
 
