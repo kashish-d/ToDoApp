@@ -62,7 +62,6 @@ if(localStorage.getItem('ToDo') != null){
 
 window.addEventListener("load",()=>{
     if(isEmpty(notesObj) === false){
-        console.log('hola');
         updatingNotes();
     }else{
         counter1.resetCounter();
@@ -74,8 +73,6 @@ function NewNote(string){
         this.noteText = string;
         this.noteCompletedStatus = false;
 }
-NewNote.prototype.completed = function(){this.noteCompletedStatus = true;}
-NewNote.prototype.incomplete = function(){this.noteCompletedStatus = false;}
 
 // Adding new Notes
 const newNoteInput = document.querySelector(".current-note input");
@@ -85,8 +82,6 @@ newNoteInput.addEventListener("keydown", (e) => {
         counter1.increaseCounter()
         notesObj[counter1.currentValue()] = new NewNote(newNoteInput.value);
         orderArray.push(String(counter1.currentValue()))
-        console.log(notesObj);
-        console.log(orderArray);
         updatingNotes();
         newNoteInput.value = "";
 
@@ -116,7 +111,6 @@ function fillingNotesToDom(box, filteredObject) {
                 </div>` 
         counter1.resetCounter();  
     }else{
-        console.log(filteredObject);
         orderArray.forEach((order)=>{
             if(filteredObject[order]){
                 let tempObj = filteredObject[order];
@@ -144,12 +138,10 @@ function fillingNotesToDom(box, filteredObject) {
         }
     )}
     box.innerHTML = html;
-    console.log(html);
 }
 
 // Calling other functions to updates all the tabs
-function updatingNotes() {
-    console.log(notesObj);
+function updatingNotes() {;
     let activeObj = {};
     let completedObj = {};
     for (let key in notesObj) {
@@ -279,9 +271,9 @@ toDoBox.addEventListener("click", (e) => {
         let dataAttribute = parentEle.getAttribute('data-order');
         if(dataAttribute === null){return}
         if(notesObj[dataAttribute].noteCompletedStatus === true){
-            notesObj[dataAttribute].incomplete();
+            notesObj[dataAttribute].noteCompletedStatus = false;
         }else{
-            notesObj[dataAttribute].completed();
+            notesObj[dataAttribute].noteCompletedStatus = true;
         }
         parentEle.classList.toggle('completed')
         updatingNotes()
@@ -308,3 +300,31 @@ function localStore(key,object){
 function isEmpty(object){
     return(JSON.stringify(object) === "{}")
 }
+
+// To remove previous local data
+if(localStorage.getItem("Kashish") != null){
+    localStorage.removeItem("Kashish");
+}
+
+
+const allListBox = document.querySelector('.all-list-box');
+Sortable.create(allListBox, {
+    handle: '.note-content',
+    animation: 200,
+    delay: 400,
+    delayOnTouchOnly: true,
+    removeCloneOnHide: true,
+    onEnd: function(evt){
+        let attribute;
+        let notes = document.querySelectorAll('.note');
+        let tempArr = [];
+
+        // dividing by 2, because at that time, clone made by sortable js library are still there. 
+        for(let i = 0; i < notes.length / 2; i++){
+            attribute = notes[i].getAttribute('data-order');
+            tempArr.push(attribute);
+        }
+        orderArray = tempArr;
+        localStore("Order",orderArray);
+    }
+});

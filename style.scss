@@ -102,6 +102,7 @@ $check-background-2: hsl(280, 87%, 65%);
 
     .current-note {
         border-radius: 0.4rem;
+        border: none;
         .note-content,
         input {
             height: 100%;
@@ -118,7 +119,8 @@ $check-background-2: hsl(280, 87%, 65%);
     }
 }
 
-.note {
+.note,
+.current-note{
     display: flex;
     align-items: center;
     min-height: 3.5rem;
@@ -133,12 +135,9 @@ $check-background-2: hsl(280, 87%, 65%);
         overflow: hidden;
         max-height: 0px;
     }
-
-    &.current-note {
-        border: none;
-    }
     .note-content,
     .current-note-content {
+        cursor: grab;
         flex: 1;
         height: 100%;
         display: flex;
@@ -379,8 +378,4 @@ $check-background-2: hsl(280, 87%, 65%);
 
 .displayNone {
     display: none;
-}
-.ghost{
-    opacity: 0;
-    
 }

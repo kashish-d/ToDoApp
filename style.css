@@ -108,6 +108,7 @@
 
 .hero .current-note {
   border-radius: 0.4rem;
+  border: none;
 }
 
 .hero .current-note .note-content,
@@ -125,7 +126,8 @@
   margin-right: 1rem;
 }
 
-.note {
+.note,
+.current-note {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -138,18 +140,19 @@
   border-bottom: 0.05rem solid var(--border);
 }
 
-.note.delete {
+.note.delete,
+.current-note.delete {
   height: 0;
   overflow: hidden;
   max-height: 0px;
 }
 
-.note.current-note {
-  border: none;
-}
-
 .note .note-content,
-.note .current-note-content {
+.note .current-note-content,
+.current-note .note-content,
+.current-note .current-note-content {
+  cursor: -webkit-grab;
+  cursor: grab;
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
@@ -166,7 +169,9 @@
 }
 
 .note .note-content p,
-.note .current-note-content p {
+.note .current-note-content p,
+.current-note .note-content p,
+.current-note .current-note-content p {
   font-size: 0.87rem;
   color: var(--font);
   cursor: pointer;
@@ -174,7 +179,9 @@
 }
 
 .note .complete-tick,
-.note .complete-tick-place {
+.note .complete-tick-place,
+.current-note .complete-tick,
+.current-note .complete-tick-place {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -197,7 +204,9 @@
 }
 
 .note .complete-tick .inner,
-.note .complete-tick-place .inner {
+.note .complete-tick-place .inner,
+.current-note .complete-tick .inner,
+.current-note .complete-tick-place .inner {
   pointer-events: none;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -215,11 +224,14 @@
 }
 
 .note .complete-tick .inner img,
-.note .complete-tick-place .inner img {
+.note .complete-tick-place .inner img,
+.current-note .complete-tick .inner img,
+.current-note .complete-tick-place .inner img {
   display: none;
 }
 
-.note .delete-option {
+.note .delete-option,
+.current-note .delete-option {
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -240,23 +252,29 @@
   cursor: pointer;
 }
 
-.note .delete-option img {
+.note .delete-option img,
+.current-note .delete-option img {
   height: 28%;
   pointer-events: none;
 }
 
 .note.completed .complete-tick,
-.note.completed .inner {
+.note.completed .inner,
+.current-note.completed .complete-tick,
+.current-note.completed .inner {
   background: -webkit-gradient(linear, left top, left bottom, from(#57ddff), to(#c058f3));
   background: linear-gradient(#57ddff, #c058f3);
 }
 
 .note.completed .complete-tick img,
-.note.completed .inner img {
+.note.completed .inner img,
+.current-note.completed .complete-tick img,
+.current-note.completed .inner img {
   display: block;
 }
 
-.note.completed .note-content p {
+.note.completed .note-content p,
+.current-note.completed .note-content p {
   -webkit-text-decoration: line-through var(--line-through);
           text-decoration: line-through var(--line-through);
   text-decoration-thickness: 0px;

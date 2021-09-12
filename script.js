@@ -31,10 +31,3 @@ if(+localStorage.getItem("darkMode") == 1){
 }
 
 
-const allListBox = document.querySelector('.all-list-box');
-Sortable.create(allListBox, {
-    handle: '.note-content',
-    animation: 200,
-    ghostClass: 'ghost',
-    delayOnTouchOnly: true
-});
