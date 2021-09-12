@@ -23,6 +23,9 @@
 // }
 
 let orderArray = []
+function  resetOrder(){
+    orderArray = [];
+};
 let notesObj = {};
 function counter(){
     let count = 0;
@@ -65,6 +68,7 @@ window.addEventListener("load",()=>{
         updatingNotes();
     }else{
         counter1.resetCounter();
+        resetOrder();
     }
 });
 
@@ -110,6 +114,7 @@ function fillingNotesToDom(box, filteredObject) {
                     </div>
                 </div>` 
         counter1.resetCounter();  
+        resetOrder();
     }else{
         orderArray.forEach((order)=>{
             if(filteredObject[order]){
