@@ -1,24 +1,91 @@
+// let orderArray = ["1","5","3","2","4"]
+// let notesObj = {
+//     "1":{
+//         noteText : "Item 1",
+//         noteCompletedStatus: false
+//     },
+//     "2":{
+//         noteText : "Item 2",
+//         noteCompletedStatus: true
+//     },
+//     "3":{
+//         noteText : "Item 3",
+//         noteCompletedStatus: false
+//     },
+//     "4":{
+//         noteText : "Item 4",
+//         noteCompletedStatus: true
+//     },
+//     "5":{
+//         noteText : "Item 5",
+//         noteCompletedStatus: false
+//     },
+// }
+
+let orderArray = []
+function  resetOrder(){
+    orderArray = [];
+};
 let notesObj = {};
+function counter(){
+    let count = 0;
+    if(localStorage.getItem("count") !== null){
+        count = +localStorage.getItem("count")
+    }
+    function currentValue(){
+        return count;
+    }
+    function increaseCounter(){
+        count++;
+        localStorage.setItem("count",String(count));
+        return count;
+    }
+    function decreaseCounter(){
+        count--;
+        localStorage.setItem("count",String(count));
+    }
+    function resetCounter(){
+        count = 0;
+        localStorage.setItem("count",String(count));
+    }
+    return {increaseCounter,decreaseCounter,currentValue,resetCounter}
+}
+
+let counter1 = counter();
+
+// let notesObj = {};
 const allListSection = document.querySelector(".all-list-box");
 const activeListSection = document.querySelector(".active-list-box");
 const completedListSection = document.querySelector(".completed-list-box");
 
-if(localStorage.getItem('Kashish') != null){
-    notesObj = JSON.parse(localStorage.getItem("Kashish"));
+if(localStorage.getItem('ToDo') != null){
+    notesObj = JSON.parse(localStorage.getItem("ToDo"));
+    orderArray = JSON.parse(localStorage.getItem("Order"))
 }
 
 window.addEventListener("load",()=>{
     if(isEmpty(notesObj) === false){
         updatingNotes();
+    }else{
+        counter1.resetCounter();
+        resetOrder();
     }
 });
+
+// use this with new , i could have made a class but oh well
+function NewNote(string){
+        this.noteText = string;
+        this.noteCompletedStatus = false;
+}
 
 // Adding new Notes
 const newNoteInput = document.querySelector(".current-note input");
 newNoteInput.addEventListener("keydown", (e) => {
     if (e.keyCode === 13) {
         if(newNoteInput.value.startsWith('<')){return}
-        notesObj[newNoteInput.value] = false;
+        counter1.increaseCounter()
+        notesObj[counter1.currentValue()] = new NewNote(newNoteInput.value);
+        orderArray.push(String(counter1.currentValue()))
         updatingNotes();
         newNoteInput.value = "";
 
@@ -36,8 +103,8 @@ function fillingNotesToDom(box, filteredObject) {
     let html = ""; //Adding nothing as keeping it undefined and adding more to it will include undefined
     let statusEach = "";
     if(isEmpty(notesObj) === true){
-        html = `<div class="note">
-                    <div class="complete-tick">
+        html = `<div class="note ">
+                    <div class="complete-tick pointerCancel">
                         <div class="inner">
                             <img src="images/icon-check.svg" alt="">
                         </div>
@@ -45,33 +112,60 @@ function fillingNotesToDom(box, filteredObject) {
                     <div class="note-content">
                         <p>Your note goes here</p>
                     </div>
-                </div>`   
-    }
-    else{
-        for (let key in filteredObject) {
-            if (filteredObject[key]) {
-                statusEach = "completed";
-            } else {
-                statusEach = "";
-            }
-            // This way is inefficienet and creating elemenet and appending is performant. 
-            // Use that if you feel the app getting sloppy!
-            html += `<div class="note ${statusEach}">
-                        <div class="complete-tick">
-                            <div class="inner">
-                                <img src="images/icon-check.svg" alt="">
+                </div>` 
+        counter1.resetCounter();  
+        resetOrder();
+    }else{
+        orderArray.forEach((order)=>{
+            if(filteredObject[order]){
+                let tempObj = filteredObject[order];
+                if (tempObj.noteCompletedStatus) {
+                    statusEach = "completed";
+                } else {
+                    statusEach = "";
+                }
+                // This way is inefficienet and creating elemenet and appending is performant. 
+                // Use that if you feel the app getting sloppy!
+                html += `<div class="note ${statusEach}" data-order="${order}">
+                            <div class="complete-tick">
+                                <div class="inner">
+                                    <img src="images/icon-check.svg" alt="">
+                                </div>
                             </div>
-                        </div>
-                        <div class="note-content">
-                            <p class="note-text" >${key}</p>
-                        </div>
-                        <div class="delete-option">
-                            <img class="delete-note-icon" src="images/icon-cross.svg" alt="">
-                        </div>
-                    </div>`;
+                            <div class="note-content">
+                                <p class="note-text" >${tempObj.noteText}</p>
+                            </div>
+                            <div class="delete-option">
+                                <img class="delete-note-icon" src="images/icon-cross.svg" alt="">
+                            </div>
+                        </div>`;
+            }
+        }
+    )}
+    box.innerHTML = html;
+}
+
+// Calling other functions to updates all the tabs
+function updatingNotes() {;
+    let activeObj = {};
+    let completedObj = {};
+    for (let key in notesObj) {
+        if (notesObj[key].noteCompletedStatus) {
+            completedObj[key] = {};
+            completedObj[key].noteText = notesObj[key].noteText
+            completedObj[key].noteCompletedStatus = true;
+        } else {
+            activeObj[key] = {};
+            activeObj[key].noteText = notesObj[key].noteText;
+            activeObj[key].noteCompletedStatus = false;
         }
     }
-    box.innerHTML = html;
+    fillingNotesToDom(allListSection, notesObj);
+    fillingNotesToDom(activeListSection, activeObj);
+    fillingNotesToDom(completedListSection, completedObj);
+    counting(activeObj);
+    localStore("ToDo",notesObj);
+    localStore("Order",orderArray)
 }
 
 const allNotesTab = document.querySelector(".all-list");
@@ -151,32 +245,13 @@ completedNotesTabMobile.addEventListener("click", () => {
 const clearAllCompleted = document.querySelector(".clear-all");
 clearAllCompleted.addEventListener("click", () => {
     for (let key in notesObj){
-        if(notesObj[key]){
+        if(notesObj[key].noteCompletedStatus){
             delete notesObj[key];
         }
     }
     updatingNotes();
 });
 
-// Calling other functions to updates all the tabs
-function updatingNotes() {
-
-    let activeObj = {};
-    let completedObj = {};
-    for (let key in notesObj) {
-        if (notesObj[key]) {
-            completedObj[key] = true;
-        } else {
-            activeObj[key] = false;
-        }
-    }
-
-    fillingNotesToDom(allListSection, notesObj);
-    fillingNotesToDom(activeListSection, activeObj);
-    fillingNotesToDom(completedListSection, completedObj);
-    counting(activeObj);
-    localStore("Kashish",notesObj);
-}
 
 // Removing notes from Dom and from notesObj
 // Supplying dummy note if no note is there
@@ -185,9 +260,11 @@ toDoBox.addEventListener("click", (e) => {
     if (e.target.classList.contains("delete-option")) {
         if(!confirm('Are you sure?\nThis action cannot be undone.')){return}
         let element = e.target.parentElement;
-        let textOfNote = element.children[1].children[0].textContent;
+        let dataAttribute = element.getAttribute('data-order');
+        // let textOfNote = element.children[1].children[0].textContent;
         element.remove();
-        delete notesObj[textOfNote];
+        delete notesObj[dataAttribute];
+        orderArray.splice(orderArray.indexOf(dataAttribute),1);
         updatingNotes();
     }
     else if(e.target.classList.contains('complete-tick') || e.target.classList.contains('note-text')){
@@ -195,15 +272,18 @@ toDoBox.addEventListener("click", (e) => {
         if(e.target.classList.contains('note-text')){
             parentEle = parentEle.parentElement;
         }
-        let textOfNote = parentEle.children[1].children[0].textContent;
-        if(notesObj[textOfNote] === true){
-            notesObj[textOfNote] = false;
+        // let textOfNote = parentEle.children[1].children[0].textContent;
+        let dataAttribute = parentEle.getAttribute('data-order');
+        if(dataAttribute === null){return}
+        if(notesObj[dataAttribute].noteCompletedStatus === true){
+            notesObj[dataAttribute].noteCompletedStatus = false;
         }else{
-            notesObj[textOfNote] = true;
+            notesObj[dataAttribute].noteCompletedStatus = true;
         }
         parentEle.classList.toggle('completed')
         updatingNotes()
     }
+    // console.table(notesObj[dataAttribute]);
 
 });
 
@@ -225,3 +305,31 @@ function localStore(key,object){
 function isEmpty(object){
     return(JSON.stringify(object) === "{}")
 }
+
+// To remove previous local data
+if(localStorage.getItem("Kashish") != null){
+    localStorage.removeItem("Kashish");
+}
+
+
+const allListBox = document.querySelector('.all-list-box');
+Sortable.create(allListBox, {
+    handle: '.note-content',
+    animation: 200,
+    delay: 400,
+    delayOnTouchOnly: true,
+    removeCloneOnHide: true,
+    onEnd: function(evt){
+        let attribute;
+        let notes = document.querySelectorAll('.note');
+        let tempArr = [];
+
+        // dividing by 2, because at that time, clone made by sortable js library are still there. 
+        for(let i = 0; i < notes.length / 2; i++){
+            attribute = notes[i].getAttribute('data-order');
+            tempArr.push(attribute);
+        }
+        orderArray = tempArr;
+        localStore("Order",orderArray);
+    }
+});

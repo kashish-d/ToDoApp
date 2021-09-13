@@ -29,3 +29,5 @@ if(+localStorage.getItem("darkMode") == 1){
     sunIcon.classList.toggle('displayNone');
     moonIcon.classList.toggle('displayNone');
 }
+
+
