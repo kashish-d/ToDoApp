@@ -246,6 +246,9 @@ $check-background-2: hsl(280, 87%, 65%);
     .active-list-box,
     .completed-list-box {
         display: none;
+        .note-content{
+            cursor: context-menu;
+        }
     }
 
     .footer {

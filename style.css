@@ -324,6 +324,11 @@
   display: none;
 }
 
+.to-do-box .active-list-box .note-content,
+.to-do-box .completed-list-box .note-content {
+  cursor: context-menu;
+}
+
 .to-do-box .footer {
   background: var(--to-do-list);
   width: 100%;

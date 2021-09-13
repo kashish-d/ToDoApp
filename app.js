@@ -245,7 +245,7 @@ completedNotesTabMobile.addEventListener("click", () => {
 const clearAllCompleted = document.querySelector(".clear-all");
 clearAllCompleted.addEventListener("click", () => {
     for (let key in notesObj){
-        if(notesObj[key]){
+        if(notesObj[key].noteCompletedStatus){
             delete notesObj[key];
         }
     }
