@@ -1,27 +1,3 @@
-// let orderArray = ["1","5","3","2","4"]
-// let notesObj = {
-//     "1":{
-//         noteText : "Item 1",
-//         noteCompletedStatus: false
-//     },
-//     "2":{
-//         noteText : "Item 2",
-//         noteCompletedStatus: true
-//     },
-//     "3":{
-//         noteText : "Item 3",
-//         noteCompletedStatus: false
-//     },
-//     "4":{
-//         noteText : "Item 4",
-//         noteCompletedStatus: true
-//     },
-//     "5":{
-//         noteText : "Item 5",
-//         noteCompletedStatus: false
-//     },
-// }
-
 let orderArray = []
 function  resetOrder(){
     orderArray = [];
